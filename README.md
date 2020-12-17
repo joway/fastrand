@@ -3,7 +3,7 @@
 ## Background
 
 Golang using a single [globalRand](https://github.com/golang/go/blob/master/src/math/rand/rand.go#L293) object between
-multiple goroutines, which cause a race condition. And the exported method `rand.NewSource()` just creates a
+multiple goroutines, which creates [race conditions](https://github.com/golang/go/issues/20387). And the exported method `rand.NewSource()` just creates a
 non-thread-safe [rngSource]() object.
 
 Fastrand wrap the internal `rngSource` struct into `sync.Pool`, and make it could run about 8 times faster

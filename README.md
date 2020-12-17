@@ -6,8 +6,8 @@ Golang using a single [globalRand](https://github.com/golang/go/blob/master/src/
 multiple goroutines, which creates [race conditions](https://github.com/golang/go/issues/20387). And the exported method `rand.NewSource()` just creates a
 non-thread-safe [rngSource]() object.
 
-Fastrand wrap the internal `rngSource` struct into `sync.Pool`, and make it could run about 8 times faster
-than `globalRand` at the concurrent situation, and also could have about 2 times speed at single-thread.
+Fastrand wrap the internal `rngSource` struct into `sync.Pool`, and make it could run about **8 times** faster
+than `globalRand` at the concurrent situation.
 
 However, if you no need to share a single rand object within multiple goroutines, you could create a private rand.Rand
 object for each goroutine.

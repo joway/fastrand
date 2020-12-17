@@ -12,6 +12,12 @@ than `globalRand` at the concurrent situation, and also could have about 2 times
 However, if you no need to share a single rand object within multiple goroutines, you could create a private rand.Rand
 object for each goroutine.
 
+## Install
+
+```shell
+go get github.com/joway/fastrand
+```
+
 ## Usage
 
 ```go

@@ -28,10 +28,10 @@ func (s *poolSource) Uint64() uint64 {
 	return v.(rand.Source64).Uint64()
 }
 
-func newPoolSource(seed int64) *poolSource {
+func newPoolSource() *poolSource {
 	s := &poolSource{}
 	p := &sync.Pool{New: func() interface{} {
-		return rand.NewSource(seed)
+		return rand.NewSource(time.Now().Unix())
 	}}
 	s.p = p
 	return s
@@ -39,7 +39,7 @@ func newPoolSource(seed int64) *poolSource {
 
 //New create a thread-safe rand.Rand object
 func New() *rand.Rand {
-	return rand.New(newPoolSource(time.Now().Unix()))
+	return rand.New(newPoolSource())
 }
 
 //NewUnsafety create a non-thread-safe rand.Rand object with current time seed
